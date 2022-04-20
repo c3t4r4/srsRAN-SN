@@ -25,7 +25,7 @@ char * gettime() {
 char *gettimeDB(){
     time_t rawtime;
     struct tm * timeinfo;
-    char *buffer[20];
+    char buffer[20];
 
     time(&rawtime);
     timeinfo = localtime( &rawtime);
