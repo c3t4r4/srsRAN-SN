@@ -22,22 +22,8 @@ char * gettime() {
     return time_str;
 }
 
-char *gettimeDB(){
-    time_t rawtime;
-    struct tm * timeinfo;
-    char buffer[20];
-
-    time(&rawtime);
-    timeinfo = localtime( &rawtime);
-
-    strftime(buffer, 20, "%Y-%m-%d %X", timeinfo);
-    puts(buffer);
-
-    return buffer;
-}
-
 void write_IMSI(FILE * output, uint64_t payload) {
-    fprintf(output, "%s; IMSI: %015" PRIu64 " \n", gettimeDB(), payload);
+    fprintf(output, "%s; IMSI: %015" PRIu64 " \n", gettime(), payload);
 }
 
 // void save_IMSI_BD(){
