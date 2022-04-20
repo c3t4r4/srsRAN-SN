@@ -30,7 +30,7 @@
 #include <time.h>
 #include "srsran/save_imsi.c"
 
-char *file_imsi = (char *)"epc_imsi.txt";
+char *file_imsi = (char *)"/home/epc_imsi.txt";
 
 namespace srsepc {
 
