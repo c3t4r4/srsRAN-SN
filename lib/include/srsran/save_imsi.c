@@ -8,10 +8,6 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include <inttypes.h> // for printing uint64_t
-#include <iostream>
-#include <cstdio>
-#include <ctime>
-#include <string>
 #include "srsran/phy/utils/vector.h"
 //#include "sqlite/sqlite3.h"
 
@@ -28,6 +24,7 @@ char * gettime() {
 char * gettimeDB() {
     time_t mytime = time(NULL);
     struct tm * timeinfo;
+    char * time_str;
 
     char timestr[30];
     char buffer [30];
@@ -35,10 +32,12 @@ char * gettimeDB() {
     time (&mytime);
     timeinfo = localtime (&mytime);
 
+    char * time_str = ctime( & mytime);
+
     strftime(timestr, sizeof(timestr), "%Y-%m-%d %X", timeinfo);
-    sprintf(buffer,"%s", timestr);
-    string stdBuffer(buffer);
-    return stdBuffer;
+    sprintf(time_str,"%s", timestr);
+
+    return time_str;
 }
 
 void write_IMSI(FILE * output, uint64_t payload) {
