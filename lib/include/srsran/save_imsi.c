@@ -8,6 +8,7 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include <inttypes.h> // for printing uint64_t
+#include <stdlib.h>
 #include "srsran/phy/utils/vector.h"
 //#include "sqlite/sqlite3.h"
 
@@ -21,17 +22,16 @@ char * gettime() {
     return time_str;
 }
 
-char * gettimeDB() {
-    time_t mytime = time(NULL);
+char *gettimeDB(){
+    time_t rawtime;
     struct tm * timeinfo;
-    char buffer [20];
+    char *buffer = malloc(20);
 
+    time(&rawtime);
+    timeinfo = localtime( &rawtime);
 
-    time (&mytime);
-    timeinfo = localtime (&mytime);
-
-    strftime (buffer,20,"%Y-%m-%d %X",timeinfo);
-    puts (buffer);
+    strftime(buffer, 20, "%Y-%m-%d %X", timeinfo);
+    puts(buffer);
 
     return buffer;
 }
