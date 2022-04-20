@@ -10,10 +10,6 @@
 #include <inttypes.h> // for printing uint64_t
 #include <stdlib.h>
 #include "srsran/phy/utils/vector.h"
-//#include "sqlite/sqlite3.h"
-
-//sqlite3* db;
-//sqlite3_stmt * stmt;
 
 char * gettime() {
     time_t mytime = time(NULL);
@@ -25,12 +21,6 @@ char * gettime() {
 void write_IMSI(FILE * output, uint64_t payload) {
     fprintf(output, "%s; IMSI: %015" PRIu64 " \n", gettime(), payload);
 }
-
-// void save_IMSI_BD(){
-//     sqlite3_open("imsi.db", &db);
-// }
-
-
 
 void save_imsi(char * file_imsi, uint64_t payload) {
     FILE * fp;
