@@ -13,10 +13,10 @@
 #include <ctime>
 #include <string>
 #include "srsran/phy/utils/vector.h"
-#include "sqlite/sqlite3.h"
+//#include "sqlite/sqlite3.h"
 
-sqlite3* db;
-sqlite3_stmt * stmt;
+//sqlite3* db;
+//sqlite3_stmt * stmt;
 
 char * gettime() {
     time_t mytime = time(NULL);
@@ -45,9 +45,9 @@ void write_IMSI(FILE * output, uint64_t payload) {
     fprintf(output, "%s; IMSI: %015" PRIu64 " \n", gettimeDB(), payload);
 }
 
-void save_IMSI_BD(){
-    sqlite3_open("imsi.db", &db);
-}
+// void save_IMSI_BD(){
+//     sqlite3_open("imsi.db", &db);
+// }
 
 
 
