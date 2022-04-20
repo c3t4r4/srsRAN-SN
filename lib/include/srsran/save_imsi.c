@@ -24,20 +24,16 @@ char * gettime() {
 char * gettimeDB() {
     time_t mytime = time(NULL);
     struct tm * timeinfo;
-    char * time_str;
+    char buffer [20];
 
-    char timestr[30];
-    char buffer [30];
 
     time (&mytime);
     timeinfo = localtime (&mytime);
 
-    char * time_str = ctime( & mytime);
+    strftime (buffer,20,"%Y-%m-%d %X",timeinfo);
+    puts (buffer);
 
-    strftime(timestr, sizeof(timestr), "%Y-%m-%d %X", timeinfo);
-    sprintf(time_str,"%s", timestr);
-
-    return time_str;
+    return buffer;
 }
 
 void write_IMSI(FILE * output, uint64_t payload) {
