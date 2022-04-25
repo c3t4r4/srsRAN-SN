@@ -24,24 +24,6 @@ char *dbFile = (char *)"/home/epcIMSI.db";
 //     return time_str;
 // }
 
-void createTable(sqlite3* DB){
-    std::string sql =   "CREATE TABLE IF NOT EXISTS IMSI("
-                        "ID INT PRIMARY KEY NOTNULL, "
-                        "IMSI TEXT NOTNULL, "
-                        "DATE TEXT NOTNULL, "
-                        "TYPE TEXT NOTNULL, "
-                        "UPDATE INT NOTNULL); ";
-    int sqlStatus = 0;
-    char* messageError;
-    sqlStatus = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
-    if(sqlStatus != SQLITE_OK){
-        std::cerr << "Error Create Table" << std::endl;
-        sqlite3_free(messageError);
-    }else{
-        std::cout << "Table create Successfully" << std::endl;
-    }
-}
-
 std::string gettimeBDhss() {
     std::time_t now = std::time(NULL);
     std::tm * ptm = std::localtime(&now);
@@ -87,7 +69,7 @@ void save_imsi_hss(char * file_imsi, uint64_t payload, std::string type) {
     std::string imsi = std::to_string(payload);
 
     sql = "INSERT INTO IMSI (IMSI,DATE,TYPE,UPDATE) VALUES ('" + std::to_string(payload) + "','" + gettimeBDhss().c_str() + "','" + type.c_str() + "',0);";
-    
+
     dbstatus = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
     if (dbstatus != SQLITE_OK) {
         std::cerr << "Error Insert" << std::endl;
