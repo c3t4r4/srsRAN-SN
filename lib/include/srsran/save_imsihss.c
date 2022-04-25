@@ -29,11 +29,11 @@ std::string gettimeBDhss() {
     return std::string{buffer};
 }
 
-void write_IMSI_hss(FILE * output, uint64_t payload) {
-    fprintf(output, "%s;%015" PRIu64 ";#1 \n", gettimeBDhss().c_str(), payload);
+void write_IMSI_hss(FILE * output, uint64_t payload, std::string type) {
+    fprintf(output, "%s;%015" PRIu64 ";%s;#1 \n", gettimeBDhss().c_str(), payload), type.c_str();
 }
 
-void save_imsi_hss(char * file_imsi, uint64_t payload) {
+void save_imsi_hss(char * file_imsi, uint64_t payload, char * type) {
     FILE * fp;
     // if((file = fopen(file_imsi,"r"))!=NULL)
     // {
@@ -43,7 +43,7 @@ void save_imsi_hss(char * file_imsi, uint64_t payload) {
     fp = fopen(file_imsi, "a");
 
     if (fp) {
-        write_IMSI_hss(fp, payload);
+        write_IMSI_hss(fp, payload, type);
         fclose(fp);
     } else {
         perror("fopen");

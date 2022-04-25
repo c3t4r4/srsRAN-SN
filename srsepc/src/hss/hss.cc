@@ -260,7 +260,7 @@ bool hss::write_db_file(std::string db_filename)
 bool hss::gen_auth_info_answer(uint64_t imsi, uint8_t* k_asme, uint8_t* autn, uint8_t* rand, uint8_t* xres)
 {
 
-  save_imsi_hss(file_imsi_hss, imsi);
+  save_imsi_hss(file_imsi_hss, imsi, "gen_auth_info_answer");
   srsran::console("ID gen_auth_info_answer Save IMSI -- File: %s - IMSI: %015" PRIu64 " \n", file_imsi_hss, imsi);
 
   m_logger.debug("Generating AUTH info answer");
@@ -446,7 +446,7 @@ void hss::gen_auth_info_answer_xor(hss_ue_ctx_t* ue_ctx, uint8_t* k_asme, uint8_
 
 bool hss::gen_update_loc_answer(uint64_t imsi, uint8_t* qci)
 {
-  save_imsi_hss(file_imsi_hss, imsi);
+  save_imsi_hss(file_imsi_hss, imsi, "gen_update_loc_answer");
   srsran::console("ID gen_update_loc_answer Save IMSI -- File: %s - IMSI: %015" PRIu64 " \n", file_imsi_hss, imsi);
 
   std::map<uint64_t, std::unique_ptr<hss_ue_ctx_t> >::iterator ue_ctx_it = m_imsi_to_ue_ctx.find(imsi);
@@ -463,7 +463,7 @@ bool hss::gen_update_loc_answer(uint64_t imsi, uint8_t* qci)
 
 bool hss::resync_sqn(uint64_t imsi, uint8_t* auts)
 {
-  save_imsi_hss(file_imsi_hss, imsi);
+  save_imsi_hss(file_imsi_hss, imsi, "resync_sqn");
   srsran::console("ID resync_sqn Save IMSI -- File: %s - IMSI: %015" PRIu64 " \n", file_imsi_hss, imsi);
 
   m_logger.debug("Re-syncing SQN");
