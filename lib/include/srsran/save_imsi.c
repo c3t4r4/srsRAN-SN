@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include "srsran/phy/utils/vector.h"
 
-char * gettime() {
+char * gettimeOld() {
     time_t mytime = time(NULL);
     char * time_str = ctime( & mytime);
     time_str[strlen(time_str) - 1] = '\0';
