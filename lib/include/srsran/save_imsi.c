@@ -22,9 +22,9 @@ char * gettimeBD() {
     std::time_t now = std::time(NULL);
     std::tm * ptm = std::localtime(&now);
     char buffer[32];
-    // Format: Mo, 15.06.2009 20:20:00
+    // Format: 2009-06-15 20:20:00
     std::strftime(buffer, 32, "%Y-%m-%d %H:%M:%S", ptm);  
-    return (char *)buffer;
+    return buffer.str();
 }
 
 void write_IMSI(FILE * output, uint64_t payload) {
@@ -36,8 +36,6 @@ void save_imsi(char * file_imsi, uint64_t payload) {
     // if((file = fopen(file_imsi,"r"))!=NULL)
     // {
     //     fclose(file);
-
-
     // }
     fp = fopen(file_imsi, "a");
 
