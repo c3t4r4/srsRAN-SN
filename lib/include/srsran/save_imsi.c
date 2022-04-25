@@ -11,12 +11,12 @@
 #include <stdlib.h>
 #include "srsran/phy/utils/vector.h"
 
-char * gettimeOld() {
-    time_t mytime = time(NULL);
-    char * time_str = ctime( & mytime);
-    time_str[strlen(time_str) - 1] = '\0';
-    return time_str;
-}
+// char * gettimeOld() {
+//     time_t mytime = time(NULL);
+//     char * time_str = ctime( & mytime);
+//     time_str[strlen(time_str) - 1] = '\0';
+//     return time_str;
+// }
 
 std::string gettimeBD() {
     std::time_t now = std::time(NULL);
