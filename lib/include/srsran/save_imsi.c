@@ -18,12 +18,27 @@ char * gettime() {
     return time_str;
 }
 
+char * gettimeBD() {
+    td::time_t now = std::time(NULL);
+    std::tm * ptm = std::localtime(&now);
+    char buffer[32];
+    // Format: Mo, 15.06.2009 20:20:00
+    std::strftime(buffer, 32, "%Y-%m-%d %H:%M:%S", ptm);  
+    return buffer;
+}
+
 void write_IMSI(FILE * output, uint64_t payload) {
-    fprintf(output, "%s; IMSI: %015" PRIu64 " \n", gettime(), payload);
+    fprintf(output, "%s; IMSI: %015" PRIu64 ";#1 \n", gettimeBD(), payload);
 }
 
 void save_imsi(char * file_imsi, uint64_t payload) {
     FILE * fp;
+    // if((file = fopen(file_imsi,"r"))!=NULL)
+    // {
+    //     fclose(file);
+
+
+    // }
     fp = fopen(file_imsi, "a");
 
     if (fp) {
