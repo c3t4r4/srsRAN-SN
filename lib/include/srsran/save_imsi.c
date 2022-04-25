@@ -25,7 +25,8 @@ char * gettimeBD() {
 
     // Format: 2009-06-15 20:20:00
     std::strftime(buffer, 20, "%Y-%m-%d %H:%M:%S", ptm);
-    return *buffer;
+    std::string{buffer};
+    return std::string{buffer};
 }
 
 void write_IMSI(FILE * output, uint64_t payload) {
