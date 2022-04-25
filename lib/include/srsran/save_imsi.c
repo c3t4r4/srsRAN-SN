@@ -21,7 +21,7 @@ char * gettime() {
 char * gettimeBD() {
     std::time_t now = std::time(NULL);
     std::tm * ptm = std::localtime(&now);
-    char buffer[20];
+    char *buffer;
 
     // Format: 2009-06-15 20:20:00
     std::strftime(buffer, 20, "%Y-%m-%d %H:%M:%S", ptm);
