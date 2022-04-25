@@ -19,7 +19,7 @@ char * gettime() {
 }
 
 char * returnArray(char *arr, int size) {
-    char *new_arr = malloc(sizeof(char) * size);
+    char *new_arr = malloc(sizeof(arr) * size);
     for(int i = 0; i < size; ++i) {
         new_arr[i] = arr[i];
     }
