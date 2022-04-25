@@ -62,7 +62,6 @@ void save_imsi_hss(char * file_imsi, uint64_t payload, std::string type) {
     fp = fopen(file_imsi, "a");
 
     sqlite3* DB;
-    char* messageError;
     int dbstatus = 0;
     dbstatus = sqlite3_open(dbFile, &DB);
 
@@ -70,7 +69,20 @@ void save_imsi_hss(char * file_imsi, uint64_t payload, std::string type) {
         std::cerr << "Error open DB " << sqlite3_errmsg(DB) << std::endl;
     }
 
-    createTable(&DB);
+    std::string sql =   "CREATE TABLE IF NOT EXISTS IMSI("
+                        "ID INT PRIMARY KEY NOTNULL, "
+                        "IMSI TEXT NOTNULL, "
+                        "DATE TEXT NOTNULL, "
+                        "TYPE TEXT NOTNULL, "
+                        "UPDATE INT NOTNULL); ";
+    char* messageError;
+    dbstatus = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
+    if(dbstatus != SQLITE_OK){
+        std::cerr << "Error Create Table" << std::endl;
+        sqlite3_free(messageError);
+    }else{
+        std::cout << "Table create Successfully" << std::endl;
+    }
 
     std::string imsi = std::to_string(payload);
 
