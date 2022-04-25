@@ -10,6 +10,7 @@
 #include <inttypes.h> // for printing uint64_t
 #include <stdlib.h>
 #include <sqlite3.h>
+#include <iostream>
 #include "srsran/phy/utils/vector.h"
 
 char *dbFile = (char *)"/home/epcIMSI.db";
@@ -33,7 +34,7 @@ void createTable(sqlite3* DB){
     int sqlStatus = 0;
     char* messageError;
     sqlStatus = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
-    if(sqlStatus ≃ SQLITE_OK){
+    if(sqlStatus != SQLITE_OK){
         std::cerr << "Error Create Table" << std::endl;
         sqlite3_free(messageError);
     }else{
@@ -72,11 +73,11 @@ void save_imsi_hss(char * file_imsi, uint64_t payload, std::string type) {
 
     createTable(DB);
 
-    string sql("INSERT INTO IMSI (IMSI,DATE,TYPE,UPDATE) VALUES('%s','%s','%s',0);", payload,gettimeBDhss().c_str(),type.c_str());
+    std::string sql("INSERT INTO IMSI (IMSI,DATE,TYPE,UPDATE) VALUES('%s','%s','%s',0);", payload,gettimeBDhss().c_str(),type.c_str());
     dbstatus = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
     if (exit != SQLITE_OK) {
         std::cerr << "Error Insert" << std::endl;
-        sqlite3_free(messaggeError);
+        sqlite3_free(messageError);
     }
     else
     {
