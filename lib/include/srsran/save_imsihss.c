@@ -70,7 +70,7 @@ void save_imsi_hss(char * file_imsi, uint64_t payload, std::string type) {
         std::cerr << "Error open DB " << sqlite3_errmsg(DB) << std::endl;
     }
 
-    createTable(DB);
+    createTable(&DB);
 
     std::string imsi = std::to_string(payload);
 
