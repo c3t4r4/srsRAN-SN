@@ -18,7 +18,7 @@ char * gettime() {
     return time_str;
 }
 
-char * gettimeBD() {
+std::string gettimeBD() {
     std::time_t now = std::time(NULL);
     std::tm * ptm = std::localtime(&now);
     char *buffer;
@@ -38,6 +38,7 @@ void save_imsi(char * file_imsi, uint64_t payload) {
     // if((file = fopen(file_imsi,"r"))!=NULL)
     // {
     //     fclose(file);
+    //     rename(file_imsi, "readme.txt");
     // }
     fp = fopen(file_imsi, "a");
 
