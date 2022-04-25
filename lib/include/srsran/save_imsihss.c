@@ -9,7 +9,6 @@
 #include <ctype.h>
 #include <inttypes.h> // for printing uint64_t
 #include <stdlib.h>
-#include <iostream.h>
 #include <sqlite3.h>
 #include "srsran/phy/utils/vector.h"
 
