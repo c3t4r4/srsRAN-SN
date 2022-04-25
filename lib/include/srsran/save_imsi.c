@@ -19,7 +19,7 @@ char * gettime() {
 }
 
 char * gettimeBD() {
-    td::time_t now = std::time(NULL);
+    std::time_t now = std::time(NULL);
     std::tm * ptm = std::localtime(&now);
     char buffer[32];
     // Format: Mo, 15.06.2009 20:20:00
