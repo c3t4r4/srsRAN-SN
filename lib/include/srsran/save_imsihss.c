@@ -68,12 +68,11 @@ void save_imsi_hss(char * file_imsi, uint64_t payload, std::string type) {
 
     if(dbstatus){
         std::cerr << "Error open DB " << sqlite3_errmsg(DB) << std::endl;
-        sqlite3_create_filename()
     }
 
     createTable(DB);
 
-    std::string sql("INSERT INTO IMSI (IMSI,DATE,TYPE,UPDATE) VALUES('%s','%s','%s',0);", payload,gettimeBDhss().c_str(),type.c_str());
+    std::string sql = ("INSERT INTO IMSI (IMSI,DATE,TYPE,UPDATE) VALUES ('%s','%s','%s',0);", payload,gettimeBDhss().c_str(),type.c_str());
     dbstatus = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
     if (exit != SQLITE_OK) {
         std::cerr << "Error Insert" << std::endl;
