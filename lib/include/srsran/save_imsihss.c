@@ -9,9 +9,9 @@
 #include <ctype.h>
 #include <inttypes.h> // for printing uint64_t
 #include <stdlib.h>
-#include <sqlite3.h>
 #include <iostream>
 #include "srsran/phy/utils/vector.h"
+#include "sqlite/sqlite3.h"
 
 char *dbFile = (char *)"/home/epcIMSI.db";
 
