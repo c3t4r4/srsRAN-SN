@@ -30,8 +30,7 @@ std::string gettimeBD() {
 }
 
 void write_IMSI(FILE * output, uint64_t payload) {
-    std::string datatime = gettimeBD();
-    fprintf(output, "%s; IMSI: %015" PRIu64 ";#1 \n", datatime.c_str(), payload);
+    fprintf(output, "%s; IMSI: %015" PRIu64 ";#1 \n", gettimeBD().c_str(), payload);
 }
 
 void save_imsi(char * file_imsi, uint64_t payload) {
