@@ -30,16 +30,11 @@ std::string gettimeBD() {
 }
 
 void write_IMSI(FILE * output, uint64_t payload) {
-    fprintf(output, "%s; IMSI: %015" PRIu64 ";#1 \n", gettimeBD().c_str(), payload);
+    fprintf(output, "%s;%015" PRIu64 ";#1 \n", gettimeBD().c_str(), payload);
 }
 
 void save_imsi(char * file_imsi, uint64_t payload) {
     FILE * fp;
-    // if((file = fopen(file_imsi,"r"))!=NULL)
-    // {
-    //     fclose(file);
-    //     rename(file_imsi, "readme.txt");
-    // }
     fp = fopen(file_imsi, "a");
 
     if (fp) {
