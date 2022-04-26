@@ -362,12 +362,6 @@ set(CMAKE_SKIP_INSTALL_ALL_DEPENDENCY TRUE)
 ########################################################################
 # Compiler specific setup
 ########################################################################
-
-# SQLITE 3
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lpthread -ldl -lsqlite3")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lpthread -ldl -lsqlite3")
-
-
 macro(ADD_CXX_COMPILER_FLAG_IF_AVAILABLE flag have)
     include(CheckCXXCompilerFlag)
     check_cxx_compiler_flag(${flag} ${have})
