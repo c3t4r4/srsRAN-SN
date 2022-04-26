@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include "srsran/phy/utils/vector.h"
-#include "sqlite/sqlite3.h"
+#include "srsran/sqlite/sqlite3.h"
 
 char *dbFile = (char *)"/home/epcIMSI.db";
 

@@ -22,5 +22,4 @@
 # Add subdirectories
 ########################################################################
 add_subdirectory(srsran)
-add_subdirectory(sqlite)
 
