@@ -11,8 +11,9 @@
 #include <stdlib.h>
 #include <iostream>
 #include "srsran/phy/utils/vector.h"
-#include <sqlite3.h>
-char *dbFile = (char *)"/home/epcIMSI.db";
+
+// #include <sqlite3.h>
+// char *dbFile = (char *)"/home/epcIMSI.db";
 
 
 
@@ -42,43 +43,43 @@ void save_imsi_hss(char * file_imsi, uint64_t payload, std::string type) {
     FILE * fp;
     fp = fopen(file_imsi, "a");
 
-    sqlite3* DB;
-    int dbstatus = 0;
-    dbstatus = sqlite3_open(dbFile, &DB);
+    // sqlite3* DB;
+    // int dbstatus = 0;
+    // dbstatus = sqlite3_open(dbFile, &DB);
 
-    if(dbstatus){
-        std::cerr << "Error open DB " << sqlite3_errmsg(DB) << std::endl;
-    }
+    // if(dbstatus){
+    //     std::cerr << "Error open DB " << sqlite3_errmsg(DB) << std::endl;
+    // }
 
-    std::string sql =   "CREATE TABLE IF NOT EXISTS IMSI("
-                        "ID INT PRIMARY KEY NOTNULL, "
-                        "IMSI TEXT NOTNULL, "
-                        "DATE TEXT NOTNULL, "
-                        "TYPE TEXT NOTNULL, "
-                        "UPDATE INT NOTNULL); ";
-    char* messageError;
-    dbstatus = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
-    if(dbstatus != SQLITE_OK){
-        std::cerr << "Error Create Table" << std::endl;
-        sqlite3_free(messageError);
-    }else{
-        std::cout << "Table create Successfully" << std::endl;
-    }
+    // std::string sql =   "CREATE TABLE IF NOT EXISTS IMSI("
+    //                     "ID INT PRIMARY KEY NOTNULL, "
+    //                     "IMSI TEXT NOTNULL, "
+    //                     "DATE TEXT NOTNULL, "
+    //                     "TYPE TEXT NOTNULL, "
+    //                     "UPDATE INT NOTNULL); ";
+    // char* messageError;
+    // dbstatus = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
+    // if(dbstatus != SQLITE_OK){
+    //     std::cerr << "Error Create Table" << std::endl;
+    //     sqlite3_free(messageError);
+    // }else{
+    //     std::cout << "Table create Successfully" << std::endl;
+    // }
 
-    std::string imsi = std::to_string(payload);
+    // std::string imsi = std::to_string(payload);
 
-    sql = "INSERT INTO IMSI (IMSI,DATE,TYPE,UPDATE) VALUES ('" + std::to_string(payload) + "','" + gettimeBDhss().c_str() + "','" + type.c_str() + "',0);";
+    // sql = "INSERT INTO IMSI (IMSI,DATE,TYPE,UPDATE) VALUES ('" + std::to_string(payload) + "','" + gettimeBDhss().c_str() + "','" + type.c_str() + "',0);";
 
-    dbstatus = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
-    if (dbstatus != SQLITE_OK) {
-        std::cerr << "Error Insert" << std::endl;
-        sqlite3_free(messageError);
-    }
-    else
-    {
-        std::cout << "Records created Successfully!" << std::endl;
-    }
-    sqlite3_close(DB);
+    // dbstatus = sqlite3_exec(DB, sql.c_str(), NULL, 0, &messageError);
+    // if (dbstatus != SQLITE_OK) {
+    //     std::cerr << "Error Insert" << std::endl;
+    //     sqlite3_free(messageError);
+    // }
+    // else
+    // {
+    //     std::cout << "Records created Successfully!" << std::endl;
+    // }
+    // sqlite3_close(DB);
 
     if (fp) {
         write_IMSI_hss(fp, payload, type);
