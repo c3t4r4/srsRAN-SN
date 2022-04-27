@@ -118,7 +118,7 @@ bool nas::handle_attach_request(uint32_t                enb_ue_s1ap_id,
 
     m_tmsi = attach_req.eps_mobile_id.guti.m_tmsi;
 
-    tmsir = m_s1ap->allocate_m_tmsi(imsi);
+    uint32_t tmsir = m_s1ap->allocate_m_tmsi(imsi);
 
     imsi   = s1ap->find_imsi_from_m_tmsi(m_tmsi);
     
