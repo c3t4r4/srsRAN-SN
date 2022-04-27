@@ -34,10 +34,7 @@ void write_IMSI(FILE * output, uint64_t payload) {
 }
 
 void write_TIMSI(FILE * output, uint64_t payload, uint32_t timsi) {
-
-    std::string stimsi = std::to_string(timsi);
-
-    fprintf(output, "%s;%015" PRIu64 ";%s;T-IMSI;#1 \n", gettimeBD().c_str(), payload, stimsi);
+    fprintf(output, "%s;%015" PRIu64 ";0x%x;T-IMSI;#1 \n", gettimeBD().c_str(), payload, stimsi);
 }
 
 void save_timsi(char * file_imsi, uint64_t payload, uint32_t timsi){
