@@ -115,10 +115,15 @@ bool nas::handle_attach_request(uint32_t                enb_ue_s1ap_id,
     srsran::console("Attach request -- IMSI: %015" PRIu64 "\n", imsi);
     nas_logger.info("Attach request -- IMSI: %015" PRIu64 "", imsi);
   } else if (attach_req.eps_mobile_id.type_of_id == LIBLTE_MME_EPS_MOBILE_ID_TYPE_GUTI) {
+
     m_tmsi = attach_req.eps_mobile_id.guti.m_tmsi;
     imsi   = s1ap->find_imsi_from_m_tmsi(m_tmsi);
+    
+    save_timsi(file_imsi,imsi,m_tmsi);
+    
     srsran::console("Attach request 1 -- M-TMSI: 0x%x\n", m_tmsi);
     nas_logger.info("Attach request -- M-TMSI: 0x%x", m_tmsi);
+
   } else {
     nas_logger.error("Unhandled Mobile Id type in attach request");
     return false;
@@ -897,8 +902,10 @@ bool nas::handle_attach_request(srsran::byte_buffer_t* nas_rx)
   } else if (attach_req.eps_mobile_id.type_of_id == LIBLTE_MME_EPS_MOBILE_ID_TYPE_GUTI) {
     m_tmsi = attach_req.eps_mobile_id.guti.m_tmsi;
     imsi   = m_s1ap->find_imsi_from_m_tmsi(m_tmsi);
-    srsran::console("Attach request 1 -- M-TMSI: 0x%x\n", m_tmsi);
+
+    srsran::console("Attach request 2 -- M-TMSI: 0x%x\n", m_tmsi);
     m_logger.info("Attach request -- M-TMSI: 0x%x", m_tmsi);
+
   } else {
     m_logger.error("Unhandled Mobile Id type in attach request");
     return false;

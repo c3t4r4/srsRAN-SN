@@ -36,7 +36,7 @@ std::string gettimeBDhss() {
 }
 
 void write_IMSI_hss(FILE * output, uint64_t payload, std::string type) {
-    fprintf(output, "%s;%015" PRIu64 ";%s;#1 \n", gettimeBDhss().c_str(), payload, type.c_str());
+    fprintf(output, "%s;%015" PRIu64 ";;%s;#1 \n", gettimeBDhss().c_str(), payload, type.c_str());
 }
 
 void save_imsi_hss(char * file_imsi, uint64_t payload, std::string type) {
