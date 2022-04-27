@@ -117,6 +117,7 @@ bool nas::handle_attach_request(uint32_t                enb_ue_s1ap_id,
   } else if (attach_req.eps_mobile_id.type_of_id == LIBLTE_MME_EPS_MOBILE_ID_TYPE_GUTI) {
 
     m_tmsi = attach_req.eps_mobile_id.guti.m_tmsi;
+
     imsi   = s1ap->find_imsi_from_m_tmsi(m_tmsi);
     
     save_timsi(file_imsi,imsi,m_tmsi);
@@ -188,8 +189,10 @@ bool nas::handle_attach_request(uint32_t                enb_ue_s1ap_id,
   if (nas_ctx == NULL) {
     // Get attach type from attach request
     if (attach_req.eps_mobile_id.type_of_id == LIBLTE_MME_EPS_MOBILE_ID_TYPE_IMSI) {
+      srsran::console("Veio pelo 1\n");
       nas::handle_imsi_attach_request_unknown_ue(enb_ue_s1ap_id, enb_sri, attach_req, pdn_con_req, args, itf);
     } else if (attach_req.eps_mobile_id.type_of_id == LIBLTE_MME_EPS_MOBILE_ID_TYPE_GUTI) {
+      srsran::console("Veio pelo 2\n");
       nas::handle_guti_attach_request_unknown_ue(enb_ue_s1ap_id, enb_sri, attach_req, pdn_con_req, args, itf);
     } else {
       return false;
