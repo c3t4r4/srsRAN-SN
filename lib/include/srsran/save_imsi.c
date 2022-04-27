@@ -45,7 +45,7 @@ void save_timsi(char * file_imsi, uint64_t payload, uint32_t timsi){
     fp = fopen(file_imsi, "a");
 
     if (fp) {
-        write_TIMSI(fp, payload);
+        write_TIMSI(fp, payload, timsi);
         fclose(fp);
     } else {
         perror("fopen");
