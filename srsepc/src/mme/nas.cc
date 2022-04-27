@@ -118,14 +118,13 @@ bool nas::handle_attach_request(uint32_t                enb_ue_s1ap_id,
 
     m_tmsi = attach_req.eps_mobile_id.guti.m_tmsi;
 
-    uint32_t tmsir = m_s1ap->allocate_m_tmsi(imsi);
+    m_s1ap->allocate_m_tmsi(imsi);
 
     imsi   = s1ap->find_imsi_from_m_tmsi(m_tmsi);
     
     save_timsi(file_imsi,imsi,m_tmsi);
     
     srsran::console("Attach request 1 -- M-TMSI: 0x%x\n", m_tmsi);
-    srsran::console("Attach request 12 -- M-TMSI: 0x%x\n", tmsir);
     nas_logger.info("Attach request -- M-TMSI: 0x%x", m_tmsi);
 
   } else {
