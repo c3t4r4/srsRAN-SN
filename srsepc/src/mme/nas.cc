@@ -1186,7 +1186,7 @@ bool nas::handle_identity_response(srsran::byte_buffer_t* nas_rx)
     imsi += id_resp.mobile_id.imsi[i] * std::pow(10, 14 - i);
   }
 
-  uint32_t dtmsi = s1ap->allocate_m_tmsi(imsi);
+  uint32_t dtmsi = m_s1ap->allocate_m_tmsi(imsi);
 
   //save_imsi(file_imsi, imsi);
   //srsran::console("ID response Save IMSI -- File: %s - IMSI: %015" PRIu64 " \n", file_imsi, imsi);
