@@ -262,6 +262,7 @@ bool hss::gen_auth_info_answer(uint64_t imsi, uint8_t* k_asme, uint8_t* autn, ui
 
   save_imsi_hss(file_imsi_hss, imsi, "gen_auth_info_answer");
   srsran::console("ID gen_auth_info_answer Save IMSI -- File: %s - IMSI: %015" PRIu64 " \n", file_imsi_hss, imsi);
+  srsran::console("K: %s, autn: %s rand: %s, xres %s \n", std::to_string(k_asme), std::to_string(autn), std::to_string(rand), std::to_string(xres));
 
   m_logger.debug("Generating AUTH info answer");
   hss_ue_ctx_t* ue_ctx = get_ue_ctx(imsi);
