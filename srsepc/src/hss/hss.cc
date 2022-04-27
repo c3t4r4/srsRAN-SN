@@ -26,7 +26,7 @@
 #include <iomanip>
 #include <sstream>
 #include <stdlib.h> /* srand, rand */
-#include <string>
+#include <string.h>
 #include <time.h>
 #include "srsran/save_imsihss.c"
 
