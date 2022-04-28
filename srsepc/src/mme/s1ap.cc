@@ -298,9 +298,6 @@ void s1ap::handle_initiating_message(const asn1::s1ap::init_msg_s& msg, struct s
       m_logger.error("Unhandled S1AP initiating message: %s", msg.value.type().to_string());
       srsran::console("Unhandled S1APinitiating message: %s\n", msg.value.type().to_string());
   }
-
-  srsran::console("Received Initial UE Message S1ap ID 2: 0x%x\n", testid1);
-  srsran::console("Received Uplink NAS Transport Message S1ap ID 2: 0x%x\n", testid2);
 }
 
 void s1ap::handle_successful_outcome(const asn1::s1ap::successful_outcome_s& msg)
