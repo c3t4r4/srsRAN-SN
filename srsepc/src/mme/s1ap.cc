@@ -273,18 +273,10 @@ void s1ap::handle_initiating_message(const asn1::s1ap::init_msg_s& msg, struct s
       break;
     case init_msg_type_opts_t::init_ue_msg:
       m_logger.info("Received Initial UE Message.");
-      
-      uint32_t testid1 = msg.value.init_ue_msg().protocol_ies.enb_ue_s1ap_id.value.value;
-      srsran::console("Received Initial UE Message S1ap ID: 0x%x\n", testid1);
-      
       m_s1ap_nas_transport->handle_initial_ue_message(msg.value.init_ue_msg(), enb_sri);
       break;
     case init_msg_type_opts_t::ul_nas_transport:
       m_logger.info("Received Uplink NAS Transport Message.");
-
-      uint32_t testid2 = msg.value.ul_nas_transport().enb_ue_s1ap_id.value.value;
-      srsran::console("Received Uplink NAS Transport Message S1ap ID: 0x%x\n", testid2);
-
       m_s1ap_nas_transport->handle_uplink_nas_transport(msg.value.ul_nas_transport(), enb_sri);
       break;
     case init_msg_type_opts_t::ue_context_release_request:
