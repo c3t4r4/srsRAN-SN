@@ -13,10 +13,7 @@
 #include "srsran/phy/utils/vector.h"
 
 void write_dataTIMSI(FILE * output, uint32_t timsi) {
-
-    std::string strtimsi = std::to_string(timsi);
-
-    fprintf(output, "%s;", strtimsi.c_str());
+    fprintf(output, "0x%x;", timsi);
 }
 
 void save_dataTIMSI(char * file_imsi, uint32_t timsi) {
