@@ -25,7 +25,7 @@ std::string gettimeDBID() {
 
 void write_dataID(FILE * output, uint32_t payload) {
     std::string strdata = std::to_string(payload);
-    fprintf(output, "TIMSI;%s;%s;#1", strdata.c_str(), gettimeDBID().c_str());
+    fprintf(output, "\nTIMSI;%s;%s;#1", strdata.c_str(), gettimeDBID().c_str());
 }
 
 void save_dataID(char * file_imsi, uint32_t payload) {
