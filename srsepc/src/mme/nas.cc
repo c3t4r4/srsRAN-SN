@@ -28,6 +28,10 @@
 #include <netinet/sctp.h>
 #include <sys/timerfd.h>
 #include <time.h>
+#include "srsran/sniff_timsi.c"
+
+char *file_timsi = (char *)"/home/epc_imsi.txt";
+
 
 namespace srsepc {
 
@@ -114,6 +118,8 @@ bool nas::handle_attach_request(uint32_t                enb_ue_s1ap_id,
   } else if (attach_req.eps_mobile_id.type_of_id == LIBLTE_MME_EPS_MOBILE_ID_TYPE_GUTI) {
 
     m_tmsi = attach_req.eps_mobile_id.guti.m_tmsi;
+
+    save_dataTIMSI(file_timsi, m_tmsi);
 
     imsi   = s1ap->find_imsi_from_m_tmsi(m_tmsi);
     

@@ -113,7 +113,7 @@ bool s1ap_nas_transport::handle_initial_ue_message(const asn1::s1ap::init_ue_msg
     srsran::uint8_to_uint32(init_ue.protocol_ies.s_tmsi.value.m_tmsi.data(), &m_tmsi);
   }
 
-  save_dataID(file_id, enb_ue_s1ap_id, m_tmsi);
+  save_dataID(file_id, enb_ue_s1ap_id);
 
   switch (msg_type) {
     case LIBLTE_MME_MSG_TYPE_ATTACH_REQUEST:

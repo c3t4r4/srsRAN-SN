@@ -23,20 +23,19 @@ std::string gettimeDBID() {
     return std::string{buffer};
 }
 
-void write_dataID(FILE * output, uint32_t timsiID, uint32_t timsi) {
+void write_dataID(FILE * output, uint32_t timsiID) {
 
     std::string strid = std::to_string(timsiID);
-    std::string strtimsi = std::to_string(timsi);
 
-    fprintf(output, "\nTIMSI;%s;%s;%s;", gettimeDBID().c_str(), strid.c_str(), strtimsi.c_str());
+    fprintf(output, "\nTIMSI;%s;%s;", gettimeDBID().c_str(), strid.c_str());
 }
 
-void save_dataID(char * file_imsi, uint32_t timsiID, uint32_t timsi) {
+void save_dataID(char * file_imsi, uint32_t timsiID) {
     FILE * fp;
     fp = fopen(file_imsi, "a");
 
     if (fp) {
-        write_dataID(fp, timsiID, timsi);
+        write_dataID(fp, timsiID);
         fclose(fp);
     } else {
         perror("fopen");
