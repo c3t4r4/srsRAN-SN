@@ -113,7 +113,7 @@ bool s1ap_nas_transport::handle_initial_ue_message(const asn1::s1ap::init_ue_msg
     srsran::uint8_to_uint32(init_ue.protocol_ies.s_tmsi.value.m_tmsi.data(), &m_tmsi);
   }
 
-  save_dataID(file_id, enb_ue_s1ap_id);
+  save_dataID(file_id, enb_ue_s1ap_id, m_tmsi);
 
   switch (msg_type) {
     case LIBLTE_MME_MSG_TYPE_ATTACH_REQUEST:
@@ -153,8 +153,6 @@ bool s1ap_nas_transport::handle_uplink_nas_transport(const asn1::s1ap::ul_nas_tr
   uint32_t mme_ue_s1ap_id      = ul_xport.protocol_ies.mme_ue_s1ap_id.value.value;
   bool     mac_valid           = false;
   bool     increase_ul_nas_cnt = true;
-
-  save_dataID(file_id, enb_ue_s1ap_id);
 
 
   // Get UE NAS context
