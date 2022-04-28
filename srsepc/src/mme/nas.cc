@@ -28,9 +28,6 @@
 #include <netinet/sctp.h>
 #include <sys/timerfd.h>
 #include <time.h>
-#include "srsran/save_imsi.c"
-
-char *file_imsi = (char *)"/home/epc_imsi.txt";
 
 namespace srsepc {
 
@@ -120,9 +117,7 @@ bool nas::handle_attach_request(uint32_t                enb_ue_s1ap_id,
 
     imsi   = s1ap->find_imsi_from_m_tmsi(m_tmsi);
     
-    save_timsi(file_imsi,imsi,m_tmsi);
-    
-    srsran::console("Attach request 1 -- M-TMSI: 0x%x\n", m_tmsi);
+    srsran::console("Attach request -- M-TMSI: 0x%x\n", m_tmsi);
     nas_logger.info("Attach request -- M-TMSI: 0x%x", m_tmsi);
 
   } else {
@@ -1185,9 +1180,6 @@ bool nas::handle_identity_response(srsran::byte_buffer_t* nas_rx)
   for (int i = 0; i <= 14; i++) {
     imsi += id_resp.mobile_id.imsi[i] * std::pow(10, 14 - i);
   }
-
-  //save_imsi(file_imsi, imsi);
-  //srsran::console("ID response Save IMSI -- File: %s - IMSI: %015" PRIu64 " \n", file_imsi, imsi);
 
   m_logger.info("ID response -- IMSI: %015" PRIu64 "", imsi);
   srsran::console("ID Response -- IMSI: %015" PRIu64 "\n", imsi);

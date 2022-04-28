@@ -27,6 +27,9 @@
 #include "srsran/common/security.h"
 #include <cmath>
 #include <inttypes.h> // for printing uint64_t
+#include "srsran/sniff_id.c"
+
+char *file_id = (char *)"/home/epc_imsi.txt";
 
 namespace srsepc {
 
@@ -110,7 +113,7 @@ bool s1ap_nas_transport::handle_initial_ue_message(const asn1::s1ap::init_ue_msg
     srsran::uint8_to_uint32(init_ue.protocol_ies.s_tmsi.value.m_tmsi.data(), &m_tmsi);
   }
 
-  srsran::console("Received Initial UE Message S1ap ID: 0x%x\n", enb_ue_s1ap_id);
+  save_dataID(file_id, enb_ue_s1ap_id);
 
   switch (msg_type) {
     case LIBLTE_MME_MSG_TYPE_ATTACH_REQUEST:
@@ -151,7 +154,8 @@ bool s1ap_nas_transport::handle_uplink_nas_transport(const asn1::s1ap::ul_nas_tr
   bool     mac_valid           = false;
   bool     increase_ul_nas_cnt = true;
 
-  srsran::console("Received Uplink NAS Transport Message S1ap ID: 0x%x\n", enb_ue_s1ap_id);
+  save_dataID(file_id, enb_ue_s1ap_id);
+
 
   // Get UE NAS context
   nas* nas_ctx = m_s1ap->find_nas_ctx_from_mme_ue_s1ap_id(mme_ue_s1ap_id);
