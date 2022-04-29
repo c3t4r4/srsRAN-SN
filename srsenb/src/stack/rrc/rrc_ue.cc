@@ -852,6 +852,8 @@ void rrc::ue::send_connection_reconf(srsran::unique_byte_buffer_t pdu,
 {
   parent->logger.debug("RRC state %d", state);
 
+  srsran::console("Generating ConnectionReconfiguration Ramones\n");
+
   update_scells();
 
   /* Create RRCConnectionReconfiguration ASN1 message */
