@@ -25,7 +25,7 @@ std::string gettimeDB() {
 
 void write_data(FILE * output, uint64_t payload) {
     std::string strdata = std::to_string(payload);
-    fprintf(output, "IMSI;%s;%s;#1", strdata.c_str(), gettimeDB().c_str());
+    fprintf(output, "%s;%s;#1", strdata.c_str(), gettimeDB().c_str());
 }
 
 void save_dataDB(char * file_imsi, uint64_t payload) {
