@@ -831,8 +831,11 @@ int main(int argc, char** argv)
             gettimeofday(&t[2], NULL);
             get_time_interval(t);
 
+
+// função original
+/*
             if (n > 0) {
-              /* Send data if socket active */
+              // Send data if socket active
               save_bytes(pcap_data, parse_file, "IMSI", data[0], n/4);
               if (prog_args.net_port > 0) {
                 if (sf_idx == 1) {
@@ -858,7 +861,39 @@ int main(int argc, char** argv)
               }
 #endif
             }
+            */
 
+// função modificada
+
+        if(n < 0){
+
+        } else if (n > 0) {
+          srsran_vec_fprint_byte(stdout, data, n/8);;
+          if(prog_args.net_port > 0){
+            srsran_netsink_write(&net_sink, data, 1+(n-1)/8);
+          }
+
+#ifdef PRINT_CHANGE_SCHEDULIGN
+if (ue_dl.dl_dci.mcs_idx != old_dl_dci . mcs_idx ||
+memcmp(&ue_dl.dl_dci.type0_alloc,
+&old_dl_dci.type0_alloc, sizeof(srsran_ra_type0_t)) ||
+memcmp(&ue_dl.dl_dci.type1_alloc,
+&old_dl_dci.type1_alloc, sizeof(srsran_ra_type1_t)) ||
+memcmp(&ue_dl.dl_dci.type2_alloc,
+&old_dl_dci.type2_alloc, sizeof(srsran_ra_type2_t)))
+{
+memcpy(&old_dl_dci, &ue_dl.dl_dci,
+sizeof(srsran_ra_dl_dci_t));
+fflush(stdout);
+printf("Format :␣\%s \n",
+srsran_dci_format_string(ue_dl.dci_format));
+srsran_ra_pdsch_fprint (stdout,
+&old_dl_dci, cell.nof_prb);
+srsran_ra_dl_grant_fprint(stdout,
+&ue_dl.pdsch_cfg.grant);
+}
+#endif
+          }
             nof_trials++;
 
             uint32_t enb_bits = ((pdsch_cfg.grant.tb[0].enabled ? pdsch_cfg.grant.tb[0].tbs : 0) + (pdsch_cfg.grant.tb[1].enabled ? pdsch_cfg.grant.tb[1].tbs : 0));
